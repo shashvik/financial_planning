@@ -13,10 +13,11 @@ post_marriage_expenditure_increment_rate = 0.30  # 30%
 baby_expenditure_increment_rate = 0.50  # 50% for the first 4 years after baby expenditure
 constant_expenditure_threshold = 35  # in lakhs
 constant_expenditure_value = 35  # in lakhs
-interest_rate = 0.07  # 7%
+equity_return_rate = 0.15  # 15%
+fd_return_rate = 0.07  # 7%
 initial_capital = 20  # in lakhs
 current_age = 26  # initial age
-future_age = 60  # future age
+future_age = 32  # future age
 sudden_marriage_age = 29  # age when sudden expenditure for marriage occurs
 sudden_marriage_amount = 20  # in lakhs
 sudden_baby_age = 33  # age when sudden expenditure for baby occurs
@@ -69,7 +70,13 @@ for year in range(1, years + 1):
         current_expenditure = constant_expenditure_value
 
     # Add the savings to the total savings and apply the interest
-    total_savings = (total_savings + savings) * (1 + interest_rate)
+    equity_investment = total_savings * 0.75  # 75% in equity
+    fd_investment = total_savings * 0.25  # 25% in FD
+    
+    equity_return = equity_investment * equity_return_rate
+    fd_return = fd_investment * fd_return_rate
+    
+    total_savings = total_savings + savings + equity_return + fd_return
     
     # Store the values in the lists
     year_list.append(year)
