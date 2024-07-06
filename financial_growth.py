@@ -17,7 +17,7 @@ equity_return_rate = 0.15  # 15%
 fd_return_rate = 0.07  # 7%
 initial_capital = 20  # in lakhs
 current_age = 26  # initial age
-future_age = 32  # future age
+future_age = 40  # future age
 sudden_marriage_age = 29  # age when sudden expenditure for marriage occurs
 sudden_marriage_amount = 20  # in lakhs
 sudden_baby_age = 33  # age when sudden expenditure for baby occurs
@@ -45,8 +45,11 @@ annotation_years = []  # To store the years of sudden expenditures
 # Iterate over each year to calculate the savings and total net worth
 for year in range(1, years + 1):
     age = current_age + year - 1
+    # Apply 30% tax to the current income
+    income_after_tax = current_income * 0.70
+    
     # Calculate the savings for the current year
-    savings = current_income - current_expenditure
+    savings = income_after_tax - current_expenditure
     
     # Apply the sudden expenditure for marriage if it's the specified year
     if age == sudden_marriage_age:
