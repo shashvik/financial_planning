@@ -34,12 +34,13 @@ current_expenditure = initial_expenditure
 expenditure_increment_rate = pre_marriage_expenditure_increment_rate
 
 # Lists to store data for the table and graph
-year_list = []
-age_list = []
-income_list = []
-expenditure_list = []
-savings_list = []
-total_savings_list = []
+year_list = [0]
+age_list = [current_age]
+income_list = [initial_income]
+post_tax_income_list = [initial_income * 0.70]
+expenditure_list = [initial_expenditure]
+savings_list = [initial_income * 0.70 - initial_expenditure]
+total_savings_list = [total_savings]
 annotation_years = []  # To store the years of sudden expenditures
 
 # Iterate over each year to calculate the savings and total net worth
@@ -85,6 +86,7 @@ for year in range(1, years + 1):
     year_list.append(year)
     age_list.append(age)
     income_list.append(current_income)
+    post_tax_income_list.append(income_after_tax)
     expenditure_list.append(current_expenditure)
     savings_list.append(savings)
     total_savings_list.append(total_savings)
@@ -114,6 +116,7 @@ data = {
     'Year': year_list,
     'Age': age_list,
     'Income (lakhs)': income_list,
+    'Post-tax Income (lakhs)': post_tax_income_list,
     'Expenditure (lakhs)': expenditure_list,
     'Savings (lakhs)': savings_list,
     'Total Savings (lakhs)': total_savings_list
@@ -128,6 +131,7 @@ with pd.option_context('display.float_format', '{:.2f}'.format):
 plt.figure(figsize=(12, 6))
 
 plt.plot(df['Year'], df['Income (lakhs)'], label='Income (lakhs)', marker='o', color='darkblue', linewidth=2.5)
+plt.plot(df['Year'], df['Post-tax Income (lakhs)'], label='Post-tax Income (lakhs)', marker='o', color='skyblue', linewidth=2.5)
 plt.plot(df['Year'], df['Expenditure (lakhs)'], label='Expenditure (lakhs)', marker='o', color='darkred', linewidth=2.5)
 plt.plot(df['Year'], df['Total Savings (lakhs)'], label='Total Savings (lakhs)', marker='o', color='darkgreen', linewidth=2.5)
 
