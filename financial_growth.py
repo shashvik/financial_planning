@@ -45,7 +45,8 @@ annotation_years = []  # To store the years of sudden expenditures
 
 # Iterate over each year to calculate the savings and total net worth
 for year in range(1, years + 1):
-    age = current_age + year - 1
+    age = current_age + year
+    
     # Apply 30% tax to the current income
     income_after_tax = current_income * 0.70
     
